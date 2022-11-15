@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Global Variables
+int positionsY[8];
+int positionsX[8];
+
 void clrscr(void)
 {
 	system("cls");
@@ -8,8 +12,6 @@ void clrscr(void)
 
 void showBoard(void)
 {
-	int positionsY[8];
-	int positionsX[8];
 
 	for (int y = 0; y < 8; y++)
 	{
