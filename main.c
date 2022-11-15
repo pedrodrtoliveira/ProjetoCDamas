@@ -1,13 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // Global Variables
 int positionsY[8];
 int positionsX[8];
 
+// TODO: conclude the timer implementation
+void getCurrentTime(void)
+{
+	time_t currentTime;
+	currentTime = time(&currentTime);
+}
+
 void clrscr(void)
 {
 	system("cls");
+}
+
+void pause(void){
+	system("pause");
 }
 
 void showBoard(void)
@@ -55,7 +67,7 @@ void showMenu(void)
 		printf("1 - Novo jogo\n");
 		printf("2 - Regras do jogo\n");
 		printf("3 - Sair do jogo\n\n");
-		printf("Escolha uma op��o: ");
+		printf("Escolha uma opção: ");
 		scanf("%d", &selectedOption);
 		switch (selectedOption)
 		{
@@ -63,7 +75,7 @@ void showMenu(void)
 		{
 			clrscr();
 			showBoard();
-			system("pause");
+			pause();
 			break;
 		}
 
@@ -81,8 +93,7 @@ void showMenu(void)
 			puts("* Andar uma casa por vez.");
 			puts("* Comer uma pe�a por vez.");
 			puts("* O jogo dura 3 minutos.\n");
-
-			system("pause");
+			pause();
 			break;
 		}
 
@@ -91,17 +102,17 @@ void showMenu(void)
 			system("color 7");
 			showWelcomeMessage();
 			printf("Que pena, voc� escolheu sair.");
-			exit(0);
+			exit(EXIT_SUCCESS);
 			break;
 		}
 
 		default:
 		{
+			clrscr();
 			system("color 4");
 			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
-			system("pause");
-			clrscr();
+			pause();
 			system("color 7");
 			break;
 		}
@@ -109,7 +120,7 @@ void showMenu(void)
 	} while (selectedOption != 0);
 }
 
-int main()
+int main(void)
 {
 	showMenu();
 	return 0;
