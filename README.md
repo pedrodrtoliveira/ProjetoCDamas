@@ -5,7 +5,7 @@ Marcar com o comentário abaixo funções em desenvolvimento:
  // TODO: (descrição)
 ```
 ## Correção de bugs:
-Descrever com objetividade qual bug foi corrigido e em qual componente pu funcionalidade.
+Descrever com objetividade qual bug foi corrigido e em qual componente ou funcionalidade.
 
 # Indice de funções
 
