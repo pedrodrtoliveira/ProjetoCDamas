@@ -1,38 +1,71 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 
-void clrscr(){
-   system("cls");
+void clrscr(void)
+{
+	system("cls");
 }
 
-int main()
+void showBoard(void)
 {
-	setlocale(LC_ALL, "Portuguese");
+	int positionsY[8];
+	int positionsX[8];
+
+	for (int y = 0; y < 8; y++)
+	{
+		positionsY[y] = y;
+		printf("\n");
+		for (int x = 0; x < 8; x++)
+		{
+			positionsX[x] = x;
+			if (x % 2 == 0 && y % 2 == 0)
+			{
+				printf("%c", 178);
+			}
+			else if (y % 2 != 0 && x % 2 == 0)
+			{
+				printf("%c", 177);
+			}
+			else if (y % 2 == 0 && x % 2 != 0)
+			{
+				printf("%c", 177);
+			}
+			else if (y % 2 != 0 && x % 2 != 0)
+			{
+				printf("%c", 178);
+			}
+		}
+	}
+	printf("\n");
+}
+
+void showWelcomeMessage(void){
+	clrscr();
+	printf("==========================\nJ O G O  D E  D A M A S\n\n==========================\n\n");
+}
+
+void showMenu(void)
+{
 	int selectoption = 0;
 	do
 	{
-		system("color 7");
-		puts("==========================\n");
-		printf("J O G O  D E  D A M A S\n");
-		puts("\n==========================\n\n");
-
-		puts("1 - Novo jogo\n");
-		puts("2 - Regras do jogo\n");
-		puts("3 - Sair do jogo\n\n");
+		showWelcomeMessage();
+		printf("1 - Novo jogo\n");
+		printf("2 - Regras do jogo\n");
+		printf("3 - Sair do jogo\n\n");
 		printf("Escolha uma op��o: ");
 		scanf("%d", &selectoption);
 		switch (selectoption)
 		{
 		case 1:
 		{
-			// adds new game here
+			showBoard();
 			break;
 		}
 
 		case 2:
 		{
-			clrscr();
+			showWelcomeMessage();
 			puts("=================== Descri��o ===================\n");
 			puts("* Jogadores - 2.");
 			puts("* Pe�as - 24 pe�as, 12 brancas e 12 pretas.");
@@ -46,34 +79,33 @@ int main()
 			puts("* O jogo dura 3 minutos.\n");
 
 			system("pause");
-			clrscr();
 			break;
 		}
 
 		case 3:
 		{
-			clrscr();
-			puts("==========================\n");
-			printf("J O G O  D E  D A M A S\n");
-			puts("\n==========================\n\n");
+			showWelcomeMessage();
 			printf("Que pena, voc� escolheu sair.");
+			system("color 7");
 			exit(0);
 			break;
 		}
 
 		default:
 		{
-			system("cls");
 			system("color 4");
-			puts("==========================\n");
-			printf("J O G O  D E  D A M A S\n");
-			puts("\n==========================\n\n");
+			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
 			system("pause");
 			clrscr();
 			break;
 		}
 		}
-	} while (selectoption != 3);
+	} while (selectoption != 0);
+}
+
+int main()
+{
+	showMenu();
 	return 0;
 }
