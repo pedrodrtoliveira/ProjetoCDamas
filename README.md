@@ -8,6 +8,8 @@
 ### Renderiza o tabuleiro.
 ## showWelcomeMessage
 ### Mostra mensagem de apresentação.
+### getCurrentTime
+## Retorna o horário atual baseado na máquina do usuário (Em desevolvimento). 
 
 # Functions Sumary
 
@@ -19,3 +21,5 @@
 ### shows the game board.
 ## showWelcomeMessage
 ### shows the welcome message
+### getCurrentTime
+## returns the current time based in user`s machine time (in development). 
