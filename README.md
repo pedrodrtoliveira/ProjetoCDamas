@@ -1,3 +1,14 @@
+# Indice de funções
+
+## clrscr() 
+### Limpa a tela (Disponível apenas no Windows).
+## pause
+### Pausa a execução (// // // //).
+## showBoard
+### Renderiza o tabuleiro.
+## showWelcomeMessage
+### Mostra mensagem de apresentação.
+
 # Functions Sumary
 
 ## clrscr() 
