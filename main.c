@@ -12,7 +12,6 @@ void clrscr(void)
 
 void showBoard(void)
 {
-
 	for (int y = 0; y < 8; y++)
 	{
 		positionsY[y] = y;
@@ -41,14 +40,15 @@ void showBoard(void)
 	printf("\n");
 }
 
-void showWelcomeMessage(void){
+void showWelcomeMessage(void)
+{
 	clrscr();
 	printf("==========================\nJ O G O  D E  D A M A S\n\n==========================\n\n");
 }
 
 void showMenu(void)
 {
-	int selectoption = 0;
+	int selectedOption = 0;
 	do
 	{
 		showWelcomeMessage();
@@ -56,12 +56,14 @@ void showMenu(void)
 		printf("2 - Regras do jogo\n");
 		printf("3 - Sair do jogo\n\n");
 		printf("Escolha uma op��o: ");
-		scanf("%d", &selectoption);
-		switch (selectoption)
+		scanf("%d", &selectedOption);
+		switch (selectedOption)
 		{
 		case 1:
 		{
+			clrscr();
 			showBoard();
+			system("pause");
 			break;
 		}
 
@@ -104,7 +106,7 @@ void showMenu(void)
 			break;
 		}
 		}
-	} while (selectoption != 0);
+	} while (selectedOption != 0);
 }
 
 int main()
