@@ -84,9 +84,9 @@ void showMenu(void)
 
 		case 3:
 		{
+			system("color 7");
 			showWelcomeMessage();
 			printf("Que pena, voc� escolheu sair.");
-			system("color 7");
 			exit(0);
 			break;
 		}
@@ -98,6 +98,7 @@ void showMenu(void)
 			printf("OP��O INV�LIDA\n\n");
 			system("pause");
 			clrscr();
+			system("color 7");
 			break;
 		}
 		}
