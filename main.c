@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <locale.h>
 
+void clrscr(){
+   system("cls");
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Portuguese");
@@ -28,31 +32,32 @@ int main()
 
 		case 2:
 		{
-			system("cls");
+			clrscr();
 			puts("=================== Descri��o ===================\n");
 			puts("* Jogadores - 2.");
 			puts("* Pe�as - 24 pe�as, 12 brancas e 12 pretas.");
 			puts("* Tabuleiro - tabuleiro de 64 casas, claras e escuras.");
 			puts("* Distribui��o - 12 pe�as da mesma cor para cada jogador, posicionadas nas casas escuras, ocupando as tr�s linhas mais pr�ximas de cada jogador.\n");
 			puts("=================== Objetivo ===================\n");
-			puts("* Capturar todas as pe�as do oponente ou deix�-lo impossibilitado de mover.\n");
+			puts("* Capturar todas as pe�as do oponente ou deix�-lo impossibilitado de mover-se.\n");
 			puts("=================== Regras ===================\n");
 			puts("* Andar uma casa por vez.");
 			puts("* Comer uma pe�a por vez.");
 			puts("* O jogo dura 3 minutos.\n");
 
 			system("pause");
-			system("cls");
+			clrscr();
 			break;
 		}
 
 		case 3:
 		{
-			system("cls");
+			clrscr();
 			puts("==========================\n");
 			printf("J O G O  D E  D A M A S\n");
 			puts("\n==========================\n\n");
 			printf("Que pena, voc� escolheu sair.");
+			exit(0);
 			break;
 		}
 
@@ -65,7 +70,7 @@ int main()
 			puts("\n==========================\n\n");
 			printf("OP��O INV�LIDA\n\n");
 			system("pause");
-			system("cls");
+			clrscr();
 			break;
 		}
 		}
