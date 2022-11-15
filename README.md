@@ -1,10 +1,10 @@
 #Functions Sumary
 
-##clrscr() 
+## clrscr() 
 ### clear the screen (Windows only).
-##pause
+## pause
 ### pause the execution (Windows only).
-##showBoard
+## showBoard
 ### shows the game board.
-##showWelcomeMessage
+## showWelcomeMessage
 ### shows the welcome message
