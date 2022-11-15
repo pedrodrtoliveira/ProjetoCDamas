@@ -1,4 +1,4 @@
-#Functions Sumary
+# Functions Sumary
 
 ## clrscr() 
 ### clear the screen (Windows only).
