@@ -24,13 +24,10 @@ void pause(void){
 
 void showBoard(void)
 {
-	int y = 0;
-	int x = 0;
-	for (y; y < 8; y++)
-	{
+	for (int y = 0; y < 8; y++) {
 		positionsY[y] = y;
 		printf("\n");
-		for (x; x < 8; x++)
+		for (int x = 0; x < 8; x++)
 		{
 			positionsX[x] = x;
 			if (x % 2 == 0 && y % 2 == 0)
