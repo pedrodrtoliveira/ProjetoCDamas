@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+<<<<<<< HEAD
 #include <time.h>
 
+=======
+#include <ncurses/ncurses.h>
+>>>>>>> 680a9da76ba9417ac68983808e259f7a06fc3777
 
 // Global Variables
 int positionsY[8];
@@ -18,14 +22,14 @@ void pause(void)
 	system("pause");
 }
 
-// TODO: conclude the timer implementation
-void counter(int seconds)
+void counter(void)
 {	
-	while (timeInSeconds <= seconds) {
+	do {	
 		printf("%i\n", timeInSeconds);
 		sleep(1);
+		clrscr();
 		timeInSeconds++;
-	}
+	} while (timeInSeconds < 180);
 }
 
 void showBoard(void)
@@ -130,7 +134,6 @@ void showMenu(void)
 
 int main(void)
 {
-	counter(180);
 	showMenu();
 	return 0;
 }
