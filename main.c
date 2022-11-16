@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ncurses/ncurses.h>
 
 // Global Variables
 int positionsY[8];
@@ -9,8 +10,10 @@ int positionsX[8];
 // TODO: conclude the timer implementation
 void getCurrentTime(void)
 {
-	time_t currentTime;
-	currentTime = time(&currentTime);
+	time_t currentTime = time(NULL);
+	printf("%s", asctime(localtime(&currentTime)));
+	// DEBUG
+	pause();
 }
 
 void clrscr(void)
@@ -18,13 +21,15 @@ void clrscr(void)
 	system("cls");
 }
 
-void pause(void){
+void pause(void)
+{
 	system("pause");
 }
 
 void showBoard(void)
 {
-	for (int y = 0; y < 8; y++) {
+	for (int y = 0; y < 8; y++)
+	{
 		positionsY[y] = y;
 		printf("\n");
 		for (int x = 0; x < 8; x++)
@@ -121,6 +126,7 @@ void showMenu(void)
 
 int main(void)
 {
+	getCurrentTime();
 	showMenu();
 	return 0;
 }
