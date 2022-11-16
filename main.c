@@ -6,14 +6,7 @@
 // Global Variables
 int positionsY[8];
 int positionsX[8];
-
-// TODO: conclude the timer implementation
-void getCurrentTime(void)
-{
-	time_t currentTime = time(NULL);
-	printf("%s", asctime(localtime(&currentTime)->tm_sec));
-	pause();
-}
+int timeInSeconds = 0;
 
 void clrscr(void)
 {
@@ -23,6 +16,16 @@ void clrscr(void)
 void pause(void)
 {
 	system("pause");
+}
+
+// TODO: conclude the timer implementation
+void counter(int seconds)
+{	
+	while (timeInSeconds <= seconds) {
+		printf("%i\n", timeInSeconds);
+		sleep(1);
+		timeInSeconds++;
+	}
 }
 
 void showBoard(void)
@@ -125,7 +128,7 @@ void showMenu(void)
 
 int main(void)
 {
-	getCurrentTime();
+	counter(180);
 	showMenu();
 	return 0;
 }
