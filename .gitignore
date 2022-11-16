@@ -1,0 +1,4 @@
+*.o
+*.layout
+*.dev
+.vscode
