@@ -1,65 +1,126 @@
 #include <stdio.h>
-#include <locale.h>
+#include <stdlib.h>
+#include <time.h>
 
-int main(){
-	setlocale(LC_ALL,"Portuguese");
-	int selectoption;
-	do{
-		puts("==========================\n");	
-    	printf("J O G O  D E  D A M A S\n");
-    	puts("\n==========================\n\n");
-    
-    	puts("1 - Novo jogo\n");
-    	puts("2 - Regras do jogo\n");
-    	puts("3 - Sair do jogo\n\n");
-    	printf("Escolha uma opção: ");
-    	scanf("%d", &selectoption);
-    	switch(selectoption){
-    		case 1:{
-    		
-				break;
+// Global Variables
+int positionsY[8];
+int positionsX[8];
+
+// TODO: conclude the timer implementation
+void getCurrentTime(void)
+{
+	time_t currentTime;
+	currentTime = time(&currentTime);
+}
+
+void clrscr(void)
+{
+	system("cls");
+}
+
+void pause(void){
+	system("pause");
+}
+
+void showBoard(void)
+{
+	for (int y = 0; y < 8; y++) {
+		positionsY[y] = y;
+		printf("\n");
+		for (int x = 0; x < 8; x++)
+		{
+			positionsX[x] = x;
+			if (x % 2 == 0 && y % 2 == 0)
+			{
+				printf("%c", 178);
 			}
-		
-			case 2:{
-				system("cls");
-           		puts("=================== Descrição ===================\n");
-           		puts("* Jogadores - 2.");
-           		puts("* Peças - 24 peças, 12 brancas e 12 pretas.");
-           		puts("* Tabuleiro - tabuleiro de 64 casas, claras e escuras.");
-           		puts("* Distribuição - 12 peças da mesma cor para cada jogador, posicionadas nas casas escuras, ocupando as três linhas mais próximas de cada jogador.\n");
-           		puts("=================== Objetivo ===================\n");
-           		puts("* Capturar todas as peças do oponente ou deixá-lo impossibilitado de mover.\n");
-           		puts("=================== Regras ===================\n");
-           		puts("* Andar uma casa por vez.");
-           		puts("* Comer uma peça por vez.");
-           		puts("* O jogo dura 3 minutos.\n");
-           	
-        		system("pause");
-        		system("cls");
-				break;
+			else if (y % 2 != 0 && x % 2 == 0)
+			{
+				printf("%c", 177);
 			}
-		
-			case 3:{
-				system("cls");
-				puts("==========================\n");	
-    			printf("J O G O  D E  D A M A S\n");
-    			puts("\n==========================\n\n");
-				printf("Que pena, você escolheu sair.");
-				break;
+			else if (y % 2 == 0 && x % 2 != 0)
+			{
+				printf("%c", 177);
 			}
-		
-			default:{
-				system("cls");
-				system("color 4");
-				puts("==========================\n");	
-    			printf("J O G O  D E  D A M A S\n");
-    			puts("\n==========================\n\n");
-				printf("OPÇÃO INVÁLIDA\n\n");
-				system("pause");
-				system("cls");
-				break;
+			else if (y % 2 != 0 && x % 2 != 0)
+			{
+				printf("%c", 178);
 			}
 		}
-	}while(selectoption!=3);
-    return 0;
+	}
+	printf("\n");
+}
+
+void showWelcomeMessage(void)
+{
+	clrscr();
+	printf("==========================\nJ O G O  D E  D A M A S\n\n==========================\n\n");
+}
+
+void showMenu(void)
+{
+	int selectedOption = 0;
+	do
+	{
+		showWelcomeMessage();
+		printf("1 - Novo jogo\n");
+		printf("2 - Regras do jogo\n");
+		printf("3 - Sair do jogo\n\n");
+		printf("Escolha uma opÃ§Ã£o: ");
+		scanf("%d", &selectedOption);
+		switch (selectedOption)
+		{
+		case 1:
+		{
+			clrscr();
+			showBoard();
+			pause();
+			break;
+		}
+
+		case 2:
+		{
+			showWelcomeMessage();
+			puts("=================== Descriï¿½ï¿½o ===================\n");
+			puts("* Jogadores - 2.");
+			puts("* Peï¿½as - 24 peï¿½as, 12 brancas e 12 pretas.");
+			puts("* Tabuleiro - tabuleiro de 64 casas, claras e escuras.");
+			puts("* Distribuiï¿½ï¿½o - 12 peï¿½as da mesma cor para cada jogador, posicionadas nas casas escuras, ocupando as trï¿½s linhas mais prï¿½ximas de cada jogador.\n");
+			puts("=================== Objetivo ===================\n");
+			puts("* Capturar todas as peï¿½as do oponente ou deixï¿½-lo impossibilitado de mover-se.\n");
+			puts("=================== Regras ===================\n");
+			puts("* Andar uma casa por vez.");
+			puts("* Comer uma peï¿½a por vez.");
+			puts("* O jogo dura 3 minutos.\n");
+			pause();
+			break;
+		}
+
+		case 3:
+		{
+			system("color 7");
+			showWelcomeMessage();
+			printf("Que pena, vocï¿½ escolheu sair.");
+			exit(EXIT_SUCCESS);
+			break;
+		}
+
+		default:
+		{
+			clrscr();
+			system("color 4");
+			showWelcomeMessage();
+			printf("OPï¿½ï¿½O INVï¿½LIDA\n\n");
+			pause();
+			system("color 7");
+			break;
+		}
+		}
+	} while (selectedOption != 0);
+}
+
+int main(void)
+{
+	showMenu();
+	return 0;
 }
