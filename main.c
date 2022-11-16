@@ -11,8 +11,7 @@ int positionsX[8];
 void getCurrentTime(void)
 {
 	time_t currentTime = time(NULL);
-	printf("%s", asctime(localtime(&currentTime)));
-	// DEBUG
+	printf("%s", asctime(localtime(&currentTime)->tm_sec));
 	pause();
 }
 
