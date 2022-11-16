@@ -7,7 +7,13 @@ biblioteca ncurses instalada;
 
 Para instalar o ncurses, digite o comando abaixo no Windows Powershell, ou no Prompt de comando:
 
-`mingw-get install ncurses`
+```c
+ mingw-get install ncurses
+```
+
+Ou pelo cyguin:
+
+`execute o setup e pesquise "ncurses", depois clique em avançar e finalize a instalação`
 
 # Guia de contribuição
 ## Features em desenvolvimento:
