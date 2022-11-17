@@ -22,8 +22,6 @@ void setColor(char *color)
 {
 	if ((int)color <= 55) {
 		system(strcat(commandBase, color));
-	} else {
-		printf("comando não aceito");
 	}
 }
 
