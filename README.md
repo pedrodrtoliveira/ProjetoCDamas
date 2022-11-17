@@ -60,7 +60,7 @@ Renderiza o tabuleiro.
 ### showWelcomeMessage
 Mostra mensagem de apresentação.
 ### showTimer
-Faz a contagem do tempo em minutos. 
+Renderiza o cronômetro.
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -75,6 +75,6 @@ shows the game board.
 ### showWelcomeMessage
 shows the welcome message
 ### showTimer
-Counts the time in minutes. 
+Render the timer. 
 
 
