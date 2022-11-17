@@ -11,9 +11,14 @@ int positionsX[8];
 int timeInMinutes = 0;
 int timeInSeconds = 0;
 
+
 void clrscr(void)
 {
 	system("cls");
+}
+
+void setColor(char *color){
+	system(color);
 }
 
 void pause(void)
@@ -116,8 +121,7 @@ void showMenu(void)
 
 		case 3:
 		{
-			system("color 7");
-			showWelcomeMessage();
+			setColor("color 7");
 			printf("Que pena, voc� escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
@@ -126,11 +130,11 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			system("color 4");
+			setColor("color 4");
 			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
 			pause();
-			system("color 7");
+			setColor("color 7");
 			break;
 		}
 		}
