@@ -39,6 +39,7 @@ void showTimer(void)
 
 void showBoard(void)
 {
+	showTimer();
 	int x;
 	int y;
 	for (y = 0; y < 8; y++)
@@ -90,7 +91,6 @@ void showMenu(void)
 		{
 		case 1:
 		{
-			clrscr();
 			showBoard();
 			pause();
 			break;
@@ -139,7 +139,6 @@ void showMenu(void)
 
 int main(void)
 {
-	showTimer();
 	showMenu();
 	return 0;
 }
