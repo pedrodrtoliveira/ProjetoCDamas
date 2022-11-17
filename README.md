@@ -61,6 +61,8 @@ Renderiza o tabuleiro.
 Mostra mensagem de apresentação.
 ### showTimer
 Renderiza o cronômetro.
+### setColor(char *color)
+Muda a cor do terminal.
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -76,5 +78,7 @@ shows the game board.
 shows the welcome message
 ### showTimer
 Render the timer. 
+### setColor(char *color)
+changes the terminal color.
 
 
