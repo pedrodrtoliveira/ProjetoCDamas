@@ -33,14 +33,21 @@ Com o ncurses e o gcc devidamente instalado, execute a seguinte linha de comando
  gcc main.c -o main -lpdcurses && main
 ```
 
+![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 # Guia de contribuição
 ## Features em desenvolvimento:
 Marcar com o comentário abaixo funções em desenvolvimento:
 ```c
  // TODO: (descrição)
 ```
+
+![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 ## Correção de bugs:
 Descrever com objetividade qual bug foi corrigido e em qual componente ou funcionalidade.
+
+![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 # Indice de funções
 
