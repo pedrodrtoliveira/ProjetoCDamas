@@ -26,9 +26,12 @@ void setColor(char *color)
 =======
 	if ((int)color <= 55) {
 		system(strcat(commandBase, color));
+<<<<<<< HEAD
 	} else {
 		printf("comando não aceito");
 >>>>>>> 52f59a1ff6f98ac8673ef8a7c23d9713926a6ee0
+=======
+>>>>>>> 99715574ab2b6bfe781a1d8b08b14104959d19c3
 	}
 }
 
