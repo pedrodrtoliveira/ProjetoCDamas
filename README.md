@@ -7,13 +7,13 @@
 
 2. GCC instalado;
 
-        Verificar se o gcc está instalado:
+    Verificar se o gcc está instalado:
 
 ```c
  gcc --version
 ```
 
-        Caso não esteja, instale-o da seguinte forma (Requer o Mingw instalado):
+    Caso não esteja, instale-o da seguinte forma (Requer o Mingw instalado):
 
 ```c
  mingw-get install gcc
@@ -21,7 +21,7 @@
 
 3. Biblioteca ncurses instalada;
 
-        Para instalar o ncurses, digite o comando abaixo no Windows Powershell, ou no Prompt de comando:
+    Para instalar o ncurses, digite o comando abaixo no Windows Powershell, ou no Prompt de comando:
 
 ```c
  mingw-get install ncurses
