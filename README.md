@@ -9,29 +9,29 @@
 
         Verificar se o gcc está instalado:
 
-        ```c
-         gcc --version
-        ```
+```c
+ gcc --version
+```
 
         Caso não esteja, instale-o da seguinte forma (Requer o Mingw instalado):
 
-        ```c
-         mingw-get install gcc
-        ```
+```c
+ mingw-get install gcc
+```
 
 3. Biblioteca ncurses instalada;
 
         Para instalar o ncurses, digite o comando abaixo no Windows Powershell, ou no Prompt de comando:
 
-        ```c
-         mingw-get install ncurses
-        ```
+```c
+ mingw-get install ncurses
+```
 
         Com o ncurses e o gcc devidamente instalado, execute a seguinte linha de comando no Prompt de comando (Execute o comando no diretório raiz do projeto):
 
-        ```c
-         gcc main.c -o main -lpdcurses && main
-        ```
+```c
+ gcc main.c -o main -lpdcurses && main
+```
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
