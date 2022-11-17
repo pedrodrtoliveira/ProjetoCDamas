@@ -64,6 +64,8 @@ Mostra mensagem de apresentação.
 ### showTimer
 Faz a contagem do tempo em minutos. 
 
+![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 ### Functions Sumary
 
 ### clrscr
