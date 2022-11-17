@@ -1,3 +1,5 @@
+![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 # Guia de build
 ## Pré requisitos
 
