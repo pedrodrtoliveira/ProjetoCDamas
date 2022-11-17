@@ -4,21 +4,23 @@
 #include <windows.h>
 #endif
 #include <ncurses/ncurses.h>
+#include <string.h>
 
 // Global Variables
 int positionsY[8];
 int positionsX[8];
 int timeInMinutes = 0;
 int timeInSeconds = 0;
-
+char commandBase[7] = "color ";
 
 void clrscr(void)
 {
 	system("cls");
 }
 
-void setColor(char *color){
-	system(color);
+void setColor(char *color)
+{
+	system(strcat(commandBase, color));
 }
 
 void pause(void)
@@ -121,7 +123,7 @@ void showMenu(void)
 
 		case 3:
 		{
-			setColor("color 7");
+			setColor("7");
 			printf("Que pena, voc� escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
@@ -130,11 +132,11 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			setColor("color 4");
+			setColor("4");
 			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
 			pause();
-			setColor("color 7");
+			setColor("7");
 			break;
 		}
 		}
