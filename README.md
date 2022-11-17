@@ -27,7 +27,7 @@
  mingw-get install ncurses
 ```
 
-        Com o ncurses e o gcc devidamente instalado, execute a seguinte linha de comando no Prompt de comando (Execute o comando no diretório raiz do projeto):
+    Com o ncurses e o gcc devidamente instalado, execute a seguinte linha de comando no Prompt de comando (Execute o comando no diretório raiz do projeto):
 
 ```c
  gcc main.c -o main -lpdcurses && main
