@@ -8,19 +8,11 @@ on:
 
 jobs:
   build:
-    
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [windows-latest]
-
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+    - name: Install MinGW
+      uses: egor-tensin/setup-mingw@v2
+    - name: Buid and run
+      run: gcc main.c -o main -lpdcurses && main
+    
+  
