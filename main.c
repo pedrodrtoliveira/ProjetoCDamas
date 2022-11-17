@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #ifdef _WIN32
 #include <windows.h>
 #endif
 #include <ncurses/ncurses.h>
-#include <string.h>
 
 // Global Variables
 int positionsY[8];
@@ -20,7 +20,11 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	system(strcat(commandBase, color));
+	if ((int)color <= 55) {
+		system(strcat(commandBase, color));
+	} else {
+		printf("comando não aceito");
+	}
 }
 
 void pause(void)
