@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+<<<<<<< HEAD
+#include <time.h>
+
+=======
 #include <ncurses/ncurses.h>
+>>>>>>> 680a9da76ba9417ac68983808e259f7a06fc3777
 
 // Global Variables
 int positionsY[8];
@@ -36,11 +41,13 @@ void showTimer(void)
 
 void showBoard(void)
 {
-	for (int y = 0; y < 8; y++)
+	int x;
+	int y;
+	for ( y = 0; y < 8; y++)
 	{
 		positionsY[y] = y;
 		printf("\n");
-		for (int x = 0; x < 8; x++)
+		for ( x = 0; x < 8; x++)
 		{
 			positionsX[x] = x;
 			if (x % 2 == 0 && y % 2 == 0)

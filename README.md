@@ -34,8 +34,8 @@ Pausa a execução (// // // //).
 Renderiza o tabuleiro.
 ## showWelcomeMessage
 Mostra mensagem de apresentação.
-## getCurrentTime
-Retorna o horário atual baseado na máquina do usuário (Em desevolvimento). 
+## counter
+Faz a contagem do tempo em segundos (3 minutos = 180 segundos). 
 
 # Functions Sumary
 
@@ -47,6 +47,7 @@ pause the execution (Windows only).
 shows the game board.
 ## showWelcomeMessage
 shows the welcome message
-## getCurrentTime
-returns the current time based in user`s machine time (in development). 
+## counter
+Counts the time in seconds (3 minutes = 180 seconds). 
+
 
