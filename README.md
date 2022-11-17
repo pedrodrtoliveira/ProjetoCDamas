@@ -1,7 +1,7 @@
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-# Guia de build
-## Pré requisitos
+### Guia de build
+### Pré requisitos
 
 ### Mingw64 instalado ([Faça o Download aqui](https://sourceforge.net/projects/mingw/));
 
@@ -37,8 +37,8 @@ Com o ncurses e o gcc devidamente instalado, execute a seguinte linha de comando
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-# Guia de contribuição
-## Features em desenvolvimento:
+### Guia de contribuição
+### Features em desenvolvimento:
 Marcar com o comentário abaixo funções em desenvolvimento:
 ```c
  // TODO: (descrição)
@@ -46,35 +46,35 @@ Marcar com o comentário abaixo funções em desenvolvimento:
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-## Correção de bugs:
+### Correção de bugs:
 Descrever com objetividade qual bug foi corrigido e em qual componente ou funcionalidade.
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-# Indice de funções
+### Indice de funções
 
-## clrscr
+### clrscr
 Limpa a tela (Disponível apenas no Windows).
-## pause
+### pause
 Pausa a execução (// // // //).
-## showBoard
+### showBoard
 Renderiza o tabuleiro.
-## showWelcomeMessage
+### showWelcomeMessage
 Mostra mensagem de apresentação.
-## showTimer
+### showTimer
 Faz a contagem do tempo em minutos. 
 
 # Functions Sumary
 
-## clrscr
+### clrscr
 clear the screen (Windows only).
-## pause
+### pause
 pause the execution (Windows only).
-## showBoard
+### showBoard
 shows the game board.
-## showWelcomeMessage
+### showWelcomeMessage
 shows the welcome message
-## showTimer
+### showTimer
 Counts the time in minutes. 
 
 
