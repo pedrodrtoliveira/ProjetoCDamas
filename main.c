@@ -5,6 +5,7 @@
 // Global Variables
 int positionsY[8];
 int positionsX[8];
+int timeInMinutes = 0;
 int timeInSeconds = 0;
 
 void clrscr(void)
@@ -17,14 +18,20 @@ void pause(void)
 	system("pause");
 }
 
-void counter(void)
-{	
-	do {	
-		printf("%i\n", timeInSeconds);
+// TODO: format the output correctly
+void showTimer(void)
+{
+	do{
+		printf("0%i:%i\n", timeInMinutes, timeInSeconds);
 		sleep(1);
 		clrscr();
 		timeInSeconds++;
-	} while (timeInSeconds < 180);
+		if (timeInSeconds % 60 == 0)
+		{
+			timeInMinutes++;
+			timeInSeconds = 0;
+		}
+	} while (timeInMinutes < 3);
 }
 
 void showBoard(void)
@@ -60,7 +67,7 @@ void showBoard(void)
 void showWelcomeMessage(void)
 {
 	clrscr();
-	printf("==========================\nJ O G O  D E  D A M A S\n\n==========================\n\n");
+	printf("==========================\n\nJ O G O  D E  D A M A S\n\n==========================\n\n");
 }
 
 void showMenu(void)
@@ -127,6 +134,7 @@ void showMenu(void)
 
 int main(void)
 {
+	showTimer();
 	showMenu();
 	return 0;
 }
