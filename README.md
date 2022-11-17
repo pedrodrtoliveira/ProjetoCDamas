@@ -1,7 +1,7 @@
 # Guia de build
 ## Pré requisitos
 
-### Mingw64 instalado [Faça o Download aqui](https://sourceforge.net/projects/mingw/);
+### Mingw64 instalado ([Faça o Download aqui](https://sourceforge.net/projects/mingw/));
 
 ### GCC instalado;
 
