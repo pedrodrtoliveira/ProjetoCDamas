@@ -19,9 +19,7 @@ Caso não esteja, instale-o da seguinte forma (Requer o Mingw instalado):
   mingw-get install gcc
 ```
 
-![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
-### Biblioteca ncurses instalada;
+3. Biblioteca ncurses instalada;
 
 Para instalar o ncurses, digite o comando abaixo no Windows Powershell, ou no Prompt de comando:
 
