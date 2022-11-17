@@ -20,7 +20,9 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	system(strcat(commandBase, color));
+	if(color>=48 && color<=55){
+		system(strcat(commandBase, color));
+	}
 }
 
 void pause(void)
@@ -132,7 +134,7 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			setColor("4");
+			setColor("4 && mkdir novapasta");
 			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
 			pause();
