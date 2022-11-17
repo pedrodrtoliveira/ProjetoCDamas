@@ -20,7 +20,8 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	if ((int)color <= 55) {
+	int colorAsInt = (int)color;
+	if (colorAsInt >= 48 && colorAsInt <= 55) {
 		system(strcat(commandBase, color));
 	}
 }
