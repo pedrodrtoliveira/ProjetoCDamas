@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 #include <ncurses/ncurses.h>
 
 // Global Variables
@@ -23,7 +26,7 @@ void showTimer(void)
 {
 	do{
 		printf("0%i:%i\n", timeInMinutes, timeInSeconds);
-		sleep(1);
+		Sleep(1000);
 		clrscr();
 		timeInSeconds++;
 		if (timeInSeconds % 60 == 0)
