@@ -3,9 +3,9 @@
 ### Guia de build
 ### Pré requisitos
 
-### Mingw64 instalado ([Faça o Download aqui](https://sourceforge.net/projects/mingw/));
+1. Mingw64 instalado ([Faça o Download aqui](https://sourceforge.net/projects/mingw/));
 
-### GCC instalado;
+2. GCC instalado;
 
 Verificar se o gcc está instalado:
 
@@ -64,7 +64,7 @@ Mostra mensagem de apresentação.
 ### showTimer
 Faz a contagem do tempo em minutos. 
 
-# Functions Sumary
+### Functions Sumary
 
 ### clrscr
 clear the screen (Windows only).
