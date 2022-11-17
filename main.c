@@ -135,7 +135,7 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			setColor("4 && mkdir novapasta");
+			setColor("4");
 			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
 			pause();
