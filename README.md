@@ -36,7 +36,7 @@
     Com o ncurses e o gcc devidamente instalado, execute a seguinte linha de comando no Prompt de comando (Execute o comando no diretório raiz do projeto):
 
 ```c
- gcc main.c -o main -lpdcurses && main
+ gcc main.c -o main -lncurses && main
 ```
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
