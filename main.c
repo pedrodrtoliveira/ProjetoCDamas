@@ -1,18 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 #include <string.h>
 #ifdef _WIN32
 #include <windows.h>
 #endif
 #include <ncurses/ncurses.h>
 
-// Global Variables
 int positionsY[8];
 int positionsX[8];
 int timeInMinutes = 0;
 int timeInSeconds = 1;
-int screenX = 0;
-int screenY = 0;
 char commandBase[7] = "color ";
 WINDOW *firstWindow;
 WINDOW *timerWindow;
@@ -64,25 +62,25 @@ void showBoard(void)
 {
 	firstWindow = createWindow(15, 50, 5, 33);
 	timerWindow = createWindow(5, 5, 0, 0);
-	int x;
-	int y;
-	for (int x = 0; x < LINES - 1; x++)
+	for (int lines = 0; lines < LINES - 1; lines++)
 	{
-		for (int y = 0; y < COLS - 1; y++)
+		// positionsX[lines] = lines;
+		for (int cols = 0; cols < COLS - 1; cols++)
 		{
-			if (x % 2 == 0 && y % 2 == 0)
+			// positionsY[cols] = cols;
+			if (lines % 2 == 0 && cols % 2 == 0)
 			{
 				wprintw(firstWindow, "%c", 178);
 			}
-			else if (y % 2 != 0 && x % 2 == 0)
+			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
 				wprintw(firstWindow, "%c", 177);
 			}
-			else if (y % 2 == 0 && x % 2 != 0)
+			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
 				wprintw(firstWindow, "%c", 177);
 			}
-			else if (y % 2 != 0 && x % 2 != 0)
+			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
 				wprintw(firstWindow, "%c", 178);
 			}
@@ -101,7 +99,6 @@ void init(void)
 {
 	initscr();
 	noecho();
-	start_color();
 	curs_set(0);
 	refresh();
 	mvwin(firstWindow, 5, 30);
@@ -154,7 +151,7 @@ void showMenu(void)
 
 		case 3:
 		{
-			clear();
+			clrscr();
 			setColor("7");
 			printf("Que pena, voc� escolheu sair.");
 			exit(EXIT_SUCCESS);
@@ -177,6 +174,7 @@ void showMenu(void)
 
 int main(void)
 {
+	setlocale(LC_ALL, NULL);
 	showMenu();
 	return 0;
 }
