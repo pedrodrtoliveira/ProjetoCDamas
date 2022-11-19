@@ -10,8 +10,12 @@
 int positionsY[8];
 int positionsX[8];
 int timeInMinutes = 0;
-int timeInSeconds = 0;
+int timeInSeconds = 1;
+int screenX = 0;
+int screenY = 0;
 char commandBase[7] = "color ";
+WINDOW *firstWindow;
+WINDOW *timerWindow;
 
 void clrscr(void)
 {
@@ -21,7 +25,8 @@ void clrscr(void)
 void setColor(char *color)
 {
 	int colorAsInt = (int)color;
-	if (colorAsInt >= 48 && colorAsInt <= 55) {
+	if (colorAsInt >= 48 && colorAsInt <= 55)
+	{
 		system(strcat(commandBase, color));
 	}
 }
@@ -31,13 +36,21 @@ void pause(void)
 	system("pause");
 }
 
-// TODO: format the output correctly
-void showTimer(void)
+WINDOW *createWindow(int height, int width, int x, int y)
 {
-	do{
-		printf("0%i:%i\n", timeInMinutes, timeInSeconds);
+	WINDOW *window = newwin(height, width, x, y);
+	return window;
+}
+
+// TODO: format the output correctly
+void showTimer(WINDOW *window)
+{
+	do
+	{
+		wclear(window);
+		wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
 		Sleep(1000);
-		clrscr();
+		wrefresh(window);
 		timeInSeconds++;
 		if (timeInSeconds % 60 == 0)
 		{
@@ -49,41 +62,56 @@ void showTimer(void)
 
 void showBoard(void)
 {
-	showTimer();
+	firstWindow = createWindow(15, 50, 5, 33);
+	timerWindow = createWindow(5, 5, 0, 0);
 	int x;
 	int y;
-	for (y = 0; y < 8; y++)
+	for (int x = 0; x < LINES - 1; x++)
 	{
-		positionsY[y] = y;
-		printf("\n");
-		for (x = 0; x < 8; x++)
+		for (int y = 0; y < COLS - 1; y++)
 		{
-			positionsX[x] = x;
 			if (x % 2 == 0 && y % 2 == 0)
 			{
-				printf("%c", 178);
+				wprintw(firstWindow, "%c", 178);
 			}
 			else if (y % 2 != 0 && x % 2 == 0)
 			{
-				printf("%c", 177);
+				wprintw(firstWindow, "%c", 177);
 			}
 			else if (y % 2 == 0 && x % 2 != 0)
 			{
-				printf("%c", 177);
+				wprintw(firstWindow, "%c", 177);
 			}
 			else if (y % 2 != 0 && x % 2 != 0)
 			{
-				printf("%c", 178);
+				wprintw(firstWindow, "%c", 178);
 			}
 		}
 	}
-	printf("\n");
+	printw("\n");
 }
 
 void showWelcomeMessage(void)
 {
 	clrscr();
 	printf("==========================\n\nJ O G O  D E  D A M A S\n\n==========================\n\n");
+}
+
+void init(void)
+{
+	initscr();
+	noecho();
+	start_color();
+	curs_set(0);
+	refresh();
+	mvwin(firstWindow, 5, 30);
+	showBoard();
+	wrefresh(firstWindow);
+	wprintw(timerWindow, "00:00");
+	wrefresh(timerWindow);
+	showTimer(timerWindow);
+	getch();
+	endwin();
 }
 
 void showMenu(void)
@@ -101,7 +129,7 @@ void showMenu(void)
 		{
 		case 1:
 		{
-			showBoard();
+			init();
 			pause();
 			break;
 		}
@@ -126,6 +154,7 @@ void showMenu(void)
 
 		case 3:
 		{
+			clear();
 			setColor("7");
 			printf("Que pena, voc� escolheu sair.");
 			exit(EXIT_SUCCESS);
