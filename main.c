@@ -5,12 +5,12 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include <ncurses/ncurses.h>
+#include <ncurses/curses.h>
 
-int positionsY[8];
-int positionsX[8];
 int timeInMinutes = 0;
 int timeInSeconds = 1;
+int screenX = 0;
+int screenY = 0;
 char commandBase[7] = "color ";
 WINDOW *firstWindow;
 WINDOW *timerWindow;
@@ -60,29 +60,27 @@ void showTimer(WINDOW *window)
 
 void showBoard(void)
 {
-	firstWindow = createWindow(15, 50, 5, 33);
+	firstWindow = createWindow(8, 14, screenY / 2.3, screenX / 2.3);
 	timerWindow = createWindow(5, 5, 0, 0);
-	for (int lines = 0; lines < LINES - 1; lines++)
+	for (int lines = 0; lines < 8; lines++)
 	{
-		// positionsX[lines] = lines;
-		for (int cols = 0; cols < COLS - 1; cols++)
+		for (int cols = 0; cols < 14; cols++)
 		{
-			// positionsY[cols] = cols;
 			if (lines % 2 == 0 && cols % 2 == 0)
 			{
-				wprintw(firstWindow, "%c", 178);
+				waddch(firstWindow, ACS_CKBOARD);
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				wprintw(firstWindow, "%c", 177);
+				wprintw(firstWindow, "%c", 175);
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
-				wprintw(firstWindow, "%c", 177);
+				wprintw(firstWindow, "%c", 175);
 			}
 			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
-				wprintw(firstWindow, "%c", 178);
+				waddch(firstWindow, ACS_CKBOARD);
 			}
 		}
 	}
@@ -101,6 +99,7 @@ void init(void)
 	noecho();
 	curs_set(0);
 	refresh();
+	getmaxyx(stdscr, screenY, screenX);
 	mvwin(firstWindow, 5, 30);
 	showBoard();
 	wrefresh(firstWindow);
@@ -172,9 +171,9 @@ void showMenu(void)
 	} while (selectedOption != 0);
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
-	setlocale(LC_ALL, NULL);
+	setlocale(LC_ALL, "");
 	showMenu();
 	return 0;
 }
