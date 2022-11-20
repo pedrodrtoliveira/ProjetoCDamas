@@ -21,6 +21,7 @@ int screenY = 0;
 char commandBase[7] = "color ";
 WINDOW *firstWindow;
 WINDOW *timerWindow;
+WINDOW *headerWindow;
 
 void clrscr(void)
 {
@@ -74,7 +75,10 @@ void showTimer(WINDOW *window)
 	} while (timeInMinutes < 3);
 
 }
-
+void header(WINDOW *window)
+{
+	wprintw(window, "==========================\nJ O G O  D E  D A M A S\n==========================");
+}
 void showBoard(void)
 {
 	firstWindow = createWindow(8, 14, screenY / 2.3, screenX / 2.3);
@@ -122,6 +126,8 @@ void initGame(void)
 	timerWindow = createWindow(5, 5, 0, 0);
 	mvwin(firstWindow, 5, 30);
 	showBoard();
+	header(headerWindow);
+	wrefresh(headerWindow);
 	wrefresh(firstWindow);
 	wprintw(timerWindow, "00:00");
 	wrefresh(timerWindow);
@@ -139,7 +145,7 @@ void showMenu(void)
 		printf("1 - Novo jogo\n");
 		printf("2 - Regras do jogo\n");
 		printf("3 - Sair do jogo\n\n");
-		printf("Escolha uma opção: ");
+		printf("Escolha uma opçao: ");
 		scanf("%d", &selectedOption);
 		switch (selectedOption)
 		{
@@ -153,16 +159,16 @@ void showMenu(void)
 		case 2:
 		{
 			showWelcomeMessage();
-			puts("=================== Descri��o ===================\n");
+			puts("=================== Descricao ===================\n");
 			puts("* Jogadores - 2.");
-			puts("* Pe�as - 24 pe�as, 12 brancas e 12 pretas.");
+			puts("* Pecas - 24 pecas, 12 brancas e 12 pretas.");
 			puts("* Tabuleiro - tabuleiro de 64 casas, claras e escuras.");
-			puts("* Distribui��o - 12 pe�as da mesma cor para cada jogador, posicionadas nas casas escuras, ocupando as tr�s linhas mais pr�ximas de cada jogador.\n");
+			puts("* Distribuicao - 12 pecas da mesma cor para cada jogador, posicionadas nas casas escuras, ocupando as tres linhas mais proximas de cada jogador.\n");
 			puts("=================== Objetivo ===================\n");
-			puts("* Capturar todas as pe�as do oponente ou deix�-lo impossibilitado de mover-se.\n");
+			puts("* Capturar todas as pecas do oponente ou deixa-lo impossibilitado de mover-se.\n");
 			puts("=================== Regras ===================\n");
 			puts("* Andar uma casa por vez.");
-			puts("* Comer uma pe�a por vez.");
+			puts("* Comer uma peca por vez.");
 			puts("* O jogo dura 3 minutos.\n");
 			pause();
 			break;
@@ -172,7 +178,7 @@ void showMenu(void)
 		{
 			clrscr();
 			setColor();
-			printf("Que pena, voc� escolheu sair.");
+			printf("Que pena, voce escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
 		}
@@ -182,7 +188,7 @@ void showMenu(void)
 			clrscr();
 			setColor("4");
 			showWelcomeMessage();
-			printf("OP��O INV�LIDA\n\n");
+			printf("OPCAO INVALIDA\n\n");
 			pause();
 			setColor();
 			break;
