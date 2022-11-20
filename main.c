@@ -18,6 +18,8 @@ int timeInMinutes = 0;
 int timeInSeconds = 1;
 int screenX = 0;
 int screenY = 0;
+int middleScreenY; 
+int middleScreenX;
 
 char commandBase[7] = "color ";
 WINDOW *firstWindow;
@@ -42,9 +44,6 @@ void setColor()
 		attron(COLOR_PAIR(ERROR_COLOR));
 		refresh();
 	}
-	else
-	{
-	}
 }
 
 void pause(void)
@@ -56,6 +55,12 @@ WINDOW *createWindow(int height, int width, int y, int x)
 {
 	WINDOW *window = newwin(height, width, y, x);
 	return window;
+}
+
+void finishGame(void)
+{
+	clear();
+	mvprintw(middleScreenY, middleScreenX, "O jogo acabou!");
 }
 
 // TODO: format the output correctly
@@ -74,6 +79,7 @@ void showTimer(WINDOW *window)
 			timeInSeconds = 0;
 		}
 	} while (timeInMinutes < 3);
+	finishGame();
 }
 void showHeader(WINDOW *window)
 {
@@ -81,7 +87,7 @@ void showHeader(WINDOW *window)
 }
 void showBoard(void)
 {
-	firstWindow = createWindow(8, 14, screenY / 2.3, screenX / 2.3);
+	firstWindow = createWindow(8, 14, middleScreenY, middleScreenX);
 	for (int lines = 0; lines < 8; lines++)
 	{
 		for (int cols = 0; cols < 14; cols++)
@@ -120,6 +126,8 @@ void initGame(void)
 	curs_set(0);
 	refresh();
 	getmaxyx(stdscr, screenY, screenX);
+	middleScreenX = screenX / 2.3;
+	middleScreenY = screenY / 2.3;
 	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
 	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
 	mvwin(firstWindow, 5, 30);
