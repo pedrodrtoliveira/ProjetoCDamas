@@ -8,10 +8,11 @@
 #include <ncurses/ncurses.h>
 #define ERROR_COLOR init_pair(1, COLOR_BLACK, COLOR_RED)
 
-typedef struct player {
+typedef struct player
+{
 	int positionX;
 	int positionY;
-}player;
+} player;
 
 int timeInMinutes = 0;
 int timeInSeconds = 1;
@@ -35,14 +36,14 @@ void setColor()
 	// {
 	// 	system(strcat(commandBase, color));
 	// }
-	if (has_colors()) {
+	if (has_colors())
+	{
 		start_color();
 		attron(COLOR_PAIR(ERROR_COLOR));
 		refresh();
-	} else {
-		endwin();
-		printf("Seu terminal não possui compatibilidade de cores.");
-		exit(1);
+	}
+	else
+	{
 	}
 }
 
@@ -51,9 +52,9 @@ void pause(void)
 	system("pause");
 }
 
-WINDOW *createWindow(int height, int width, int x, int y)
+WINDOW *createWindow(int height, int width, int y, int x)
 {
-	WINDOW *window = newwin(height, width, x, y);
+	WINDOW *window = newwin(height, width, y, x);
 	return window;
 }
 
@@ -73,16 +74,14 @@ void showTimer(WINDOW *window)
 			timeInSeconds = 0;
 		}
 	} while (timeInMinutes < 3);
-
 }
-void header(WINDOW *window)
+void showHeader(WINDOW *window)
 {
-	wprintw(window, "==========================\nJ O G O  D E  D A M A S\n==========================");
+	wprintw(window, "==========================\n J O G O  D E  D A M A S \n==========================");
 }
 void showBoard(void)
 {
 	firstWindow = createWindow(8, 14, screenY / 2.3, screenX / 2.3);
-	wattron(firstWindow, ERROR_COLOR);
 	for (int lines = 0; lines < 8; lines++)
 	{
 		for (int cols = 0; cols < 14; cols++)
@@ -111,26 +110,25 @@ void showBoard(void)
 void showWelcomeMessage(void)
 {
 	clrscr();
-	printf("==========================\n\nJ O G O  D E  D A M A S\n\n==========================\n\n");
+	printf("\n\n==========================\n\nJ O G O  D E  D A M A S\n\n==========================\n\n");
 }
 
 void initGame(void)
 {
 	initscr();
-	start_color();
 	noecho();
 	curs_set(0);
-	setColor();
 	refresh();
 	getmaxyx(stdscr, screenY, screenX);
-	timerWindow = createWindow(5, 5, 0, 0);
+	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
+	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
 	mvwin(firstWindow, 5, 30);
 	showBoard();
-	header(headerWindow);
-	wrefresh(headerWindow);
 	wrefresh(firstWindow);
 	wprintw(timerWindow, "00:00");
 	wrefresh(timerWindow);
+	showHeader(headerWindow);
+	wrefresh(headerWindow);
 	showTimer(timerWindow);
 	getch();
 	endwin();
@@ -151,7 +149,7 @@ void showMenu(void)
 		{
 		case 1:
 		{
-			init();
+			initGame();
 			pause();
 			break;
 		}
@@ -200,7 +198,6 @@ void showMenu(void)
 int main(int argc, char *argv[])
 {
 	setlocale(LC_ALL, "");
-	setColor();
 	showMenu();
 	return 0;
 }
