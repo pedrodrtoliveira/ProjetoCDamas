@@ -143,7 +143,7 @@ void showMenu(void)
 		printf("1 - Novo jogo\n");
 		printf("2 - Regras do jogo\n");
 		printf("3 - Sair do jogo\n\n");
-		printf("Escolha uma opçao: ");
+		printf("Escolha uma opcao: ");
 		scanf("%d", &selectedOption);
 		switch (selectedOption)
 		{
