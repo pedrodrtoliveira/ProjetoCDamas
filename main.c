@@ -5,7 +5,8 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include <ncurses/curses.h>
+#include <ncurses/ncurses.h>
+#define ERROR_COLOR init_pair(1, COLOR_BLACK, COLOR_RED)
 
 typedef struct player {
 	int positionX;
@@ -26,12 +27,21 @@ void clrscr(void)
 	system("cls");
 }
 
-void setColor(char *color)
+void setColor()
 {
-	int colorAsInt = (int)color;
-	if (colorAsInt >= 48 && colorAsInt <= 55)
-	{
-		system(strcat(commandBase, color));
+	// int colorAsInt = (int)color;
+	// if (colorAsInt >= 48 && colorAsInt <= 55)
+	// {
+	// 	system(strcat(commandBase, color));
+	// }
+	if (has_colors()) {
+		start_color();
+		attron(COLOR_PAIR(ERROR_COLOR));
+		refresh();
+	} else {
+		endwin();
+		printf("Seu terminal não possui compatibilidade de cores.");
+		exit(1);
 	}
 }
 
@@ -62,12 +72,13 @@ void showTimer(WINDOW *window)
 			timeInSeconds = 0;
 		}
 	} while (timeInMinutes < 3);
+
 }
 
 void showBoard(void)
 {
 	firstWindow = createWindow(8, 14, screenY / 2.3, screenX / 2.3);
-	timerWindow = createWindow(5, 5, 0, 0);
+	wattron(firstWindow, ERROR_COLOR);
 	for (int lines = 0; lines < 8; lines++)
 	{
 		for (int cols = 0; cols < 14; cols++)
@@ -99,13 +110,16 @@ void showWelcomeMessage(void)
 	printf("==========================\n\nJ O G O  D E  D A M A S\n\n==========================\n\n");
 }
 
-void init(void)
+void initGame(void)
 {
 	initscr();
+	start_color();
 	noecho();
 	curs_set(0);
+	setColor();
 	refresh();
 	getmaxyx(stdscr, screenY, screenX);
+	timerWindow = createWindow(5, 5, 0, 0);
 	mvwin(firstWindow, 5, 30);
 	showBoard();
 	wrefresh(firstWindow);
@@ -157,7 +171,7 @@ void showMenu(void)
 		case 3:
 		{
 			clrscr();
-			setColor("7");
+			setColor();
 			printf("Que pena, voc� escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
@@ -170,7 +184,7 @@ void showMenu(void)
 			showWelcomeMessage();
 			printf("OP��O INV�LIDA\n\n");
 			pause();
-			setColor("7");
+			setColor();
 			break;
 		}
 		}
@@ -180,6 +194,7 @@ void showMenu(void)
 int main(int argc, char *argv[])
 {
 	setlocale(LC_ALL, "");
+	setColor();
 	showMenu();
 	return 0;
 }
