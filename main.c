@@ -7,10 +7,16 @@
 #endif
 #include <ncurses/curses.h>
 
+typedef struct player {
+	int positionX;
+	int positionY;
+}player;
+
 int timeInMinutes = 0;
 int timeInSeconds = 1;
 int screenX = 0;
 int screenY = 0;
+
 char commandBase[7] = "color ";
 WINDOW *firstWindow;
 WINDOW *timerWindow;
