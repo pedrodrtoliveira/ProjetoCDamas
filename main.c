@@ -5,20 +5,14 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
+#include "checkers.h"
 #include <ncurses/ncurses.h>
-#define ERROR_COLOR init_pair(1, COLOR_BLACK, COLOR_RED)
-
-typedef struct player
-{
-	int positionX;
-	int positionY;
-} player;
 
 int timeInMinutes = 0;
 int timeInSeconds = 1;
 int screenX = 0;
 int screenY = 0;
-int middleScreenY; 
+int middleScreenY;
 int middleScreenX;
 
 char commandBase[7] = "color ";
@@ -31,18 +25,12 @@ void clrscr(void)
 	system("cls");
 }
 
-void setColor()
+void setColor(char *color)
 {
-	// int colorAsInt = (int)color;
-	// if (colorAsInt >= 48 && colorAsInt <= 55)
-	// {
-	// 	system(strcat(commandBase, color));
-	// }
-	if (has_colors())
+	int colorAsInt = (int)color;
+	if (colorAsInt >= 48 && colorAsInt <= 55)
 	{
-		start_color();
-		attron(COLOR_PAIR(ERROR_COLOR));
-		refresh();
+		system(strcat(commandBase, color));
 	}
 }
 
@@ -79,6 +67,8 @@ void showTimer(WINDOW *window)
 			timeInSeconds = 0;
 		}
 	} while (timeInMinutes < 3);
+	timeInMinutes = 0;
+	timeInSeconds = 1;
 	finishGame();
 }
 void showHeader(WINDOW *window)
@@ -87,10 +77,10 @@ void showHeader(WINDOW *window)
 }
 void showBoard(void)
 {
-	firstWindow = createWindow(8, 14, middleScreenY, middleScreenX);
+	firstWindow = createWindow(8, 16, middleScreenY, middleScreenX);
 	for (int lines = 0; lines < 8; lines++)
 	{
-		for (int cols = 0; cols < 14; cols++)
+		for (int cols = 0; cols < 16; cols++)
 		{
 			if (lines % 2 == 0 && cols % 2 == 0)
 			{
@@ -110,7 +100,6 @@ void showBoard(void)
 			}
 		}
 	}
-	printw("\n");
 }
 
 void showWelcomeMessage(void)
@@ -121,9 +110,10 @@ void showWelcomeMessage(void)
 
 void initGame(void)
 {
+	setlocale(LC_ALL, "");
 	initscr();
 	noecho();
-	curs_set(0);
+	curs_set(FALSE);
 	refresh();
 	getmaxyx(stdscr, screenY, screenX);
 	middleScreenX = screenX / 2.3;
@@ -182,8 +172,7 @@ void showMenu(void)
 
 		case 3:
 		{
-			clrscr();
-			setColor();
+			// setColor("7");
 			printf("Que pena, voce escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
@@ -192,11 +181,11 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			setColor("4");
+			// setColor("4");
 			showWelcomeMessage();
 			printf("OPCAO INVALIDA\n\n");
 			pause();
-			setColor();
+			// setColor("7");
 			break;
 		}
 		}
@@ -204,8 +193,7 @@ void showMenu(void)
 }
 
 int main(int argc, char *argv[])
-{
-	setlocale(LC_ALL, "");
+{	
 	showMenu();
 	return 0;
 }
