@@ -12,8 +12,8 @@ int timeInMinutes = 0;
 int timeInSeconds = 1;
 int screenX = 0;
 int screenY = 0;
-int middleScreenY;
-int middleScreenX;
+int middleScreenY = 0;
+int middleScreenX = 0;
 
 char commandBase[7] = "color ";
 WINDOW *firstWindow;
@@ -82,6 +82,7 @@ void showBoard(void)
 	{
 		for (int cols = 0; cols < 16; cols++)
 		{
+
 			if (lines % 2 == 0 && cols % 2 == 0)
 			{
 				waddch(firstWindow, ACS_CKBOARD);
