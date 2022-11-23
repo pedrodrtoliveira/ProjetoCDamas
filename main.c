@@ -1,12 +1,15 @@
+#define NCURSES_WIDECHAR 1
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
+#include <wchar.h>
 #ifdef _WIN32
 #include <windows.h>
 #endif
 #include "checkers.h"
-#include <ncurses/ncurses.h>
+#include <ncurses/curses.h>
 
 int timeInMinutes = 0;
 int timeInSeconds = 1;
@@ -16,7 +19,7 @@ int middleScreenY = 0;
 int middleScreenX = 0;
 
 char commandBase[7] = "color ";
-WINDOW *firstWindow;
+WINDOW *boardWindow;
 WINDOW *timerWindow;
 WINDOW *headerWindow;
 
@@ -47,7 +50,6 @@ WINDOW *createWindow(int height, int width, int y, int x)
 
 void finishGame(void)
 {
-	clear();
 	mvprintw(middleScreenY, middleScreenX, "O jogo acabou!");
 }
 
@@ -69,6 +71,8 @@ void showTimer(WINDOW *window)
 	} while (timeInMinutes < 3);
 	timeInMinutes = 0;
 	timeInSeconds = 1;
+	wclear(window);
+	clear();
 	finishGame();
 }
 void showHeader(WINDOW *window)
@@ -77,27 +81,30 @@ void showHeader(WINDOW *window)
 }
 void showBoard(void)
 {
-	firstWindow = createWindow(8, 16, middleScreenY, middleScreenX);
+	boardWindow = createWindow(8, 8, middleScreenY, middleScreenX);
+	keypad(boardWindow, TRUE);
 	for (int lines = 0; lines < 8; lines++)
 	{
-		for (int cols = 0; cols < 16; cols++)
+		for (int cols = 0; cols < 8; cols++)
 		{
-
 			if (lines % 2 == 0 && cols % 2 == 0)
 			{
-				waddch(firstWindow, ACS_CKBOARD);
+				waddch(boardWindow, ACS_CKBOARD);
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				wprintw(firstWindow, "%c", 175);
+				if (lines <= 2 && cols <= 16) {
+					createWindow(1, 1, middleScreenY + 1, middleScreenX + 1);
+				}
+				wprintw(boardWindow, "%c", 175);
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
-				wprintw(firstWindow, "%c", 175);
+				wprintw(boardWindow, "%c", 175);
 			}
 			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
-				waddch(firstWindow, ACS_CKBOARD);
+				waddch(boardWindow, ACS_CKBOARD);
 			}
 		}
 	}
@@ -111,24 +118,25 @@ void showWelcomeMessage(void)
 
 void initGame(void)
 {
-	setlocale(LC_ALL, "");
+	setlocale(LC_ALL, ".UTF-8");
 	initscr();
 	noecho();
-	curs_set(FALSE);
+	curs_set(0);
 	refresh();
 	getmaxyx(stdscr, screenY, screenX);
 	middleScreenX = screenX / 2.3;
 	middleScreenY = screenY / 2.3;
 	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
 	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
-	mvwin(firstWindow, 5, 30);
+	mvwin(boardWindow, 5, 30);
 	showBoard();
-	wrefresh(firstWindow);
+	wrefresh(boardWindow);
 	wprintw(timerWindow, "00:00");
 	wrefresh(timerWindow);
 	showHeader(headerWindow);
 	wrefresh(headerWindow);
 	showTimer(timerWindow);
+	wclear(timerWindow);
 	getch();
 	endwin();
 }
@@ -149,7 +157,6 @@ void showMenu(void)
 		case 1:
 		{
 			initGame();
-			pause();
 			break;
 		}
 
@@ -173,7 +180,7 @@ void showMenu(void)
 
 		case 3:
 		{
-			// setColor("7");
+			setColor("7");
 			printf("Que pena, voce escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
@@ -182,11 +189,11 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			// setColor("4");
+			setColor("4");
 			showWelcomeMessage();
 			printf("OPCAO INVALIDA\n\n");
 			pause();
-			// setColor("7");
+			setColor("7");
 			break;
 		}
 		}
@@ -195,6 +202,7 @@ void showMenu(void)
 
 int main(int argc, char *argv[])
 {	
+	setlocale(LC_ALL, NULL);
 	showMenu();
 	return 0;
 }
