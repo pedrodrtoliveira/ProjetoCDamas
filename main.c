@@ -18,7 +18,7 @@ int screenY = 0;
 int middleScreenY = 0;
 int middleScreenX = 0;
 
-char commandBase[7] = "color ";
+char commandBase[] = "color ";
 WINDOW *boardWindow;
 WINDOW *timerWindow;
 WINDOW *headerWindow;
@@ -30,8 +30,7 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	int colorAsInt = (int)color;
-	if (colorAsInt >= 48 && colorAsInt <= 55)
+	if ((int)color >= 48 && (int)color <= 55)
 	{
 		system(strcat(commandBase, color));
 	}
@@ -82,6 +81,7 @@ void showBoard(void)
 {
 	boardWindow = createWindow(8, 8, middleScreenY, middleScreenX);
 	keypad(boardWindow, TRUE);
+	
 	for (int lines = 0; lines < 8; lines++)
 	{
 		for (int cols = 0; cols < 8; cols++)
@@ -152,6 +152,7 @@ void showMenu(void)
 		{
 		case 1:
 		{
+			clear();
 			initGame();
 			break;
 		}
