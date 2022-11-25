@@ -92,11 +92,11 @@ void showBoard(void)
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				wprintw(boardWindow, "%c", 175);
+				lines <= 2 ? wprintw(boardWindow, "%c", 183) : wprintw(boardWindow, "%c", 175);
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
-				wprintw(boardWindow, "%c", 175);
+				lines <= 2 ? wprintw(boardWindow, "%c", 183) : wprintw(boardWindow, "%c", 175);
 			}
 			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
