@@ -17,7 +17,7 @@ jobs:
     - name: Get GCC Version
       run: gcc --version
     - name: Build C file
-      run: gcc main.c -o main
+      run: gcc ${{ github.workspace }}\main.c -o main
     - name: Run C File
       run: main
     
