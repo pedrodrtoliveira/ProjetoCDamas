@@ -199,7 +199,6 @@ void showMenu(void)
 
 int main(int argc, char *argv[])
 {	
-	setlocale(LC_ALL, NULL);
 	showMenu();
 	return 0;
 }
