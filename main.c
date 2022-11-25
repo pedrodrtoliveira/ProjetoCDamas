@@ -58,11 +58,7 @@ void showTimer(WINDOW *window)
 	do
 	{
 		wclear(window);
-		if (timeInSeconds < 10) {
-			wprintw(window, "0%i:0%i\n", timeInMinutes, timeInSeconds);
-		} else {
-			wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
-		}
+		timeInSeconds < 10 ? wprintw(window, "0%i:0%i\n", timeInMinutes, timeInSeconds) : wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
 		Sleep(1000);
 		wrefresh(window);
 		timeInSeconds++;
