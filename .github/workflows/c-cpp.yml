@@ -15,9 +15,6 @@ jobs:
     - name: Open Workflow Project
       run: cd ${{ github.workspace }}
     - name: List directories
-      run: dir
+      run: dir ${{ github.workspace }}
     - name: Get GCC Version
       run: gcc --version
-
-    
-  
