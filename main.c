@@ -53,13 +53,16 @@ void finishGame(void)
 	mvprintw(middleScreenY, middleScreenX, "O jogo acabou!");
 }
 
-// TODO: format the output correctly
 void showTimer(WINDOW *window)
 {
 	do
 	{
 		wclear(window);
-		wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
+		if (timeInSeconds < 10) {
+			wprintw(window, "0%i:0%i\n", timeInMinutes, timeInSeconds);
+		} else {
+			wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
+		}
 		Sleep(1000);
 		wrefresh(window);
 		timeInSeconds++;
@@ -93,9 +96,6 @@ void showBoard(void)
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				if (lines <= 2 && cols <= 16) {
-					createWindow(1, 1, middleScreenY + 1, middleScreenX + 1);
-				}
 				wprintw(boardWindow, "%c", 175);
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
