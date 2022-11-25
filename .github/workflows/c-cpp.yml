@@ -13,7 +13,8 @@ jobs:
     - name: Install MinGW
       uses: egor-tensin/setup-mingw@v2
     - name: Buid and run
-      run: dir ${{ github.workspace }}
+      run: cd ${{ github.workspace }}
+      run: gcc main.c -o main -lncurses -std=11
 
     
   
