@@ -30,9 +30,10 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	if ((int)color >= 48 && (int)color <= 55)
-	{
+	if ((int)color >= 48 && (int)color <= 55){
 		system(strcat(commandBase, color));
+	} else {
+		printf("Comando");
 	}
 }
 
@@ -56,19 +57,19 @@ void showTimer(WINDOW *window)
 {
 	do
 	{
+		timeInSeconds++;
 		wclear(window);
 		timeInSeconds < 10 ? wprintw(window, "0%i:0%i\n", timeInMinutes, timeInSeconds) : wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
 		Sleep(1000);
 		wrefresh(window);
-		timeInSeconds++;
 		if (timeInSeconds % 60 == 0)
 		{
-			timeInMinutes++;
 			timeInSeconds = 0;
+			timeInMinutes++;
 		}
-	} while (timeInMinutes < 3);
+	} while (timeInMinutes != 3);
 	timeInMinutes = 0;
-	timeInSeconds = 1;
+	timeInSeconds = 0;
 	wclear(window);
 	clear();
 	finishGame();
