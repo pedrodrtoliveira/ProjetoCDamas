@@ -53,12 +53,24 @@ void finishGame(void)
 	mvprintw(middleScreenY, middleScreenX, "O jogo acabou!");
 }
 
+void clearPiece(WINDOW *window, int positionY, int positionX){
+	wmove(window, positionY, positionX);
+	waddch(window, 175);
+	wrefresh(window);
+}
+
+void movePlayer(player p, WINDOW *boardWindow){
+	wmove(boardWindow, p.positionY, p.positionX);
+	waddch(boardWindow, 183);
+	wrefresh(boardWindow);
+}
+
 void showTimer(WINDOW *window)
 {
 	do
 	{
-		timeInSeconds++;
 		wclear(window);
+		timeInSeconds++;
 		timeInSeconds < 10 ? wprintw(window, "0%i:0%i\n", timeInMinutes, timeInSeconds) : wprintw(window, "0%i:%i\n", timeInMinutes, timeInSeconds);
 		Sleep(1000);
 		wrefresh(window);
@@ -91,11 +103,19 @@ void showBoard(void)
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				lines <= 2 ? waddch(boardWindow, 183) : waddch(boardWindow, 175);
+				if (lines <= 2 || lines >= 5) {
+					waddch(boardWindow, 183);
+				} else {
+					waddch(boardWindow, 175);
+				}
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
-				lines <= 2 ? waddch(boardWindow, 183) : waddch(boardWindow, 175);
+				if (lines <= 2 || lines >= 5) {
+					waddch(boardWindow, 183); 
+				} else {
+					waddch(boardWindow, 175);
+				}
 			}
 			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
@@ -103,6 +123,11 @@ void showBoard(void)
 			}
 		}
 	}
+	player p1;
+	p1.positionX = 1;
+	p1.positionY = 4;
+	movePlayer(p1, boardWindow);
+	clearPiece(boardWindow, 5, 0);
 }
 
 void showWelcomeMessage(void)
@@ -115,7 +140,6 @@ void initGame(void)
 {
 	setlocale(LC_ALL, ".UTF-8");
 	initscr();
-	attron(A_ALTCHARSET);
 	noecho();
 	curs_set(0);
 	getmaxyx(stdscr, screenY, screenX);
