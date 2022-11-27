@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
-#include <wchar.h>
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -12,13 +11,13 @@
 #include <ncurses/curses.h>
 
 int timeInMinutes = 0;
-int timeInSeconds = 1;
+int timeInSeconds = 0;
 int screenX = 0;
 int screenY = 0;
 int middleScreenY = 0;
 int middleScreenX = 0;
 
-char commandBase[] = "color ";
+char commandBase[7] = "color ";
 WINDOW *boardWindow;
 WINDOW *timerWindow;
 WINDOW *headerWindow;
@@ -30,10 +29,11 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	if ((int)color >= 48 && (int)color <= 55){
+	if ((int)color >= 48 && (int)color <= 57){
 		system(strcat(commandBase, color));
 	} else {
-		printf("Comando");
+		printf("Comando Inválido");
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -81,15 +81,13 @@ void showHeader(WINDOW *window)
 void showBoard(void)
 {
 	boardWindow = createWindow(8, 8, middleScreenY, middleScreenX);
-	keypad(boardWindow, TRUE);
-	
 	for (int lines = 0; lines < 8; lines++)
 	{
 		for (int cols = 0; cols < 8; cols++)
 		{
 			if (lines % 2 == 0 && cols % 2 == 0)
 			{
-				waddch(boardWindow, ACS_CKBOARD);
+				waddch(boardWindow, ACS_BOARD);
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
@@ -101,7 +99,7 @@ void showBoard(void)
 			}
 			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
-				waddch(boardWindow, ACS_CKBOARD);
+				waddch(boardWindow, ACS_BOARD);
 			}
 		}
 	}
@@ -117,15 +115,17 @@ void initGame(void)
 {
 	setlocale(LC_ALL, ".UTF-8");
 	initscr();
+	attron(A_ALTCHARSET);
 	noecho();
 	curs_set(0);
-	refresh();
 	getmaxyx(stdscr, screenY, screenX);
 	middleScreenX = screenX / 2.3;
 	middleScreenY = screenY / 2.3;
+	refresh();
 	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
 	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
 	mvwin(boardWindow, 5, 30);
+	keypad(boardWindow, TRUE);
 	showBoard();
 	wrefresh(boardWindow);
 	wprintw(timerWindow, "00:00");
