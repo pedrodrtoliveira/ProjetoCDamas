@@ -115,6 +115,7 @@ void movePiece(player p, WINDOW *window)
 			wmove(window, p.positionY, p.positionX);
 			waddch(window, 183);
 			wrefresh(window);
+			break;
 		default:
 			break;
 		}
