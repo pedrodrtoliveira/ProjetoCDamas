@@ -31,9 +31,12 @@ void clrscr(void)
 
 void setColor(char *color)
 {
-	if ((int)color >= 48 && (int)color <= 57){
+	if ((int)color >= 48 && (int)color <= 57)
+	{
 		system(strcat(commandBase, color));
-	} else {
+	}
+	else
+	{
 		printf("Comando Inválido");
 		exit(EXIT_FAILURE);
 	}
@@ -55,7 +58,8 @@ void finishGame(void)
 	mvprintw(middleScreenY, middleScreenX, "O jogo acabou!");
 }
 
-void clearPiece(WINDOW *window, int positionY, int positionX){
+void clearPiece(WINDOW *window, int positionY, int positionX)
+{
 	wmove(window, positionY, positionX);
 	waddch(window, 175);
 	wrefresh(window);
@@ -117,9 +121,9 @@ void showHeader(WINDOW *window)
 void showBoard(void)
 {
 	boardWindow = createWindow(8, 8, middleScreenY, middleScreenX);
-	for (int lines = 0; lines < 8; lines++)
+	for (int cols = 0; cols < 8; cols++)
 	{
-		for (int cols = 0; cols < 8; cols++)
+		for (int lines = 0; lines < 8; lines++)
 		{
 			if (lines % 2 == 0 && cols % 2 == 0)
 			{
@@ -127,17 +131,23 @@ void showBoard(void)
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				if (lines <= 2 || lines >= 5) {
+				if (cols <= 2 || cols >= 5)
+				{
 					waddch(boardWindow, 183);
-				} else {
+				}
+				else
+				{
 					waddch(boardWindow, 175);
 				}
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
-				if (lines <= 2 || lines >= 5) {
-					waddch(boardWindow, 183); 
-				} else {
+				if (cols <= 2 || cols >= 5)
+				{
+					waddch(boardWindow, 183);
+				}
+				else
+				{
 					waddch(boardWindow, 175);
 				}
 			}
@@ -168,7 +178,7 @@ void initGame(void)
 	refresh();
 	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
 	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
-	mvwin(boardWindow, 5, 30);
+	mvwin(boardWindow, middleScreenY, middleScreenX);
 	keypad(boardWindow, TRUE);
 	showBoard();
 	wrefresh(boardWindow);
@@ -243,7 +253,7 @@ void showMenu(void)
 }
 
 int main(int argc, char *argv[])
-{	
+{
 	showMenu();
 	return 0;
 }

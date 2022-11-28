@@ -10,11 +10,14 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Install MinGW
-      uses: egor-tensin/setup-mingw@v2
-    - name: Open Workflow Project
-      run: cd ${{ github.workspace }}
-    - name: List directories
-      run: dir ${{ github.workspace }}
-    - name: Get GCC Version
-      run: gcc --version
+      - uses: actions/checkout@v3
+      - name: configure
+        run: ./configure
+      - name: Install MinGW
+        uses: egor-tensin/setup-mingw@v2
+      - name: Open Workflow Project
+        run: cd ${{ github.workspace }}
+      - name: List directories
+        run: dir ${{ github.workspace }}
+      - name: Get GCC Version
+        run: gcc --version

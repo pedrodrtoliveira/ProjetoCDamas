@@ -2,3 +2,5 @@
 *.layout
 *.dev
 .vscode
+test.c
+test.exe
