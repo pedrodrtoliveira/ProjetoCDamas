@@ -66,8 +66,7 @@ void clearPiece(WINDOW *window, int positionY, int positionX)
 	wrefresh(window);
 }
 
-void movePlayer(player p, WINDOW *window){
-
+void movePiece(player p, WINDOW *window){
 	p.positionY = 0;
 	p.positionX = 0;
 	keypad(window, TRUE);
@@ -179,7 +178,7 @@ void showBoard(void)
 			}
 		}
 	}
-	movePlayer(p1, boardWindow);
+	movePiece(p1, boardWindow);
 }
 
 void showWelcomeMessage(void)
