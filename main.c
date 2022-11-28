@@ -160,25 +160,11 @@ void showBoard(void)
 			}
 			else if (cols % 2 != 0 && lines % 2 == 0)
 			{
-				if (cols <= 2 || cols >= 5)
-				{
-					waddch(boardWindow, 183);
-				}
-				else
-				{
-					waddch(boardWindow, 175);
-				}
+				cols <= 2 || cols >= 5 ? waddch(boardWindow, 183) : waddch(boardWindow, 175);
 			}
 			else if (cols % 2 == 0 && lines % 2 != 0)
 			{
-				if (cols <= 2 || cols >= 5)
-				{
-					waddch(boardWindow, 183);
-				}
-				else
-				{
-					waddch(boardWindow, 175);
-				}
+				cols <= 2 || cols >= 5 ? waddch(boardWindow, 183) : waddch(boardWindow, 175);
 			}
 			else if (cols % 2 != 0 && lines % 2 != 0)
 			{
