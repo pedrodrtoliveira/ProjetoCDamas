@@ -66,52 +66,59 @@ void clearPiece(WINDOW *window, int positionY, int positionX)
 	wrefresh(window);
 }
 
-void movePiece(player p, WINDOW *window){
+void movePiece(player p, WINDOW *window)
+{
 	p.positionY = 0;
 	p.positionX = 0;
 	keypad(window, TRUE);
 	int ch;
-	do{
+	do
+	{
 		wclear(positionWindow);
-		wprintw(positionWindow,"X: %d e Y: %d", p.positionX, p.positionY);
+		wprintw(positionWindow, "X: %d e Y: %d", p.positionX, p.positionY);
 		wrefresh(positionWindow);
 		ch = wgetch(window);
 		switch (ch)
 		{
 		case KEY_UP:
 			p.positionY++;
-			if(p.positionY < 0 || p.positionY > 8){
+			if (p.positionY < 0 || p.positionY > 8)
+			{
 				p.positionY = 0;
 			}
 			break;
-		
+
 		case KEY_DOWN:
 			p.positionY--;
-			if(p.positionY < 0 || p.positionY > 8){
+			if (p.positionY < 0 || p.positionY > 8)
+			{
 				p.positionY = 0;
 			}
 			break;
-		
+
 		case KEY_LEFT:
 			p.positionX--;
-			if(p.positionX < 0 || p.positionX > 8){
+			if (p.positionX < 0 || p.positionX > 8)
+			{
 				p.positionX = 0;
 			}
 			break;
 
 		case KEY_RIGHT:
 			p.positionX++;
-			if(p.positionX < 0 || p.positionX > 8){
+			if (p.positionX < 0 || p.positionX > 8)
+			{
 				p.positionX = 0;
 			}
 			break;
+		case 'j':
+			wmove(window, p.positionY, p.positionX);
+			waddch(window, 183);
+			wrefresh(window);
 		default:
 			break;
 		}
-	} while (ch != 'j');
-	wmove(window, p.positionY, p.positionX);
-	waddch(window, 183);
-	wrefresh(window);
+	} while (1);
 }
 
 void showTimer(WINDOW *window)
