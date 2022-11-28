@@ -23,6 +23,7 @@ char commandBase[7] = "color ";
 WINDOW *boardWindow;
 WINDOW *timerWindow;
 WINDOW *headerWindow;
+WINDOW *positionWindow;
 
 void clrscr(void)
 {
@@ -66,28 +67,49 @@ void clearPiece(WINDOW *window, int positionY, int positionX)
 }
 
 void movePlayer(player p, WINDOW *window){
-	p.positionY = 2;
-	p.positionX = 2;
-	keypad(stdscr, TRUE);
-	int ch = wgetch(window);
-	wrefresh(window);
-		switch(ch)
-		{
-			case KEY_UP:
-				p.positionY++;
-				break;
-			
-			case KEY_DOWN:
-				p.positionY--;
-				break;
-			case KEY_LEFT:
-				p.positionX--;
-				break;
-			case KEY_RIGHT:
-				p.positionX++;
-				break;
-		}
 
+	p.positionY = 0;
+	p.positionX = 0;
+	keypad(window, TRUE);
+	int ch;
+	do{
+		wclear(positionWindow);
+		wprintw(positionWindow,"X: %d e Y: %d", p.positionX, p.positionY);
+		wrefresh(positionWindow);
+		ch = wgetch(window);
+		switch (ch)
+		{
+		case KEY_UP:
+			p.positionY++;
+			if(p.positionY < 0 || p.positionY > 8){
+				p.positionY = 0;
+			}
+			break;
+		
+		case KEY_DOWN:
+			p.positionY--;
+			if(p.positionY < 0 || p.positionY > 8){
+				p.positionY = 0;
+			}
+			break;
+		
+		case KEY_LEFT:
+			p.positionX--;
+			if(p.positionX < 0 || p.positionX > 8){
+				p.positionX = 0;
+			}
+			break;
+
+		case KEY_RIGHT:
+			p.positionX++;
+			if(p.positionX < 0 || p.positionX > 8){
+				p.positionX = 0;
+			}
+			break;
+		default:
+			break;
+		}
+	} while (ch != 'j');
 	wmove(window, p.positionY, p.positionX);
 	waddch(window, 183);
 	wrefresh(window);
@@ -176,10 +198,10 @@ void initGame(void)
 	middleScreenX = screenX / 2.3;
 	middleScreenY = screenY / 2.3;
 	refresh();
+	positionWindow = createWindow(1, 11, 0, 0);
 	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
 	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
 	mvwin(boardWindow, middleScreenY, middleScreenX);
-	keypad(boardWindow, TRUE);
 	showBoard();
 	wrefresh(boardWindow);
 	wprintw(timerWindow, "00:00");
