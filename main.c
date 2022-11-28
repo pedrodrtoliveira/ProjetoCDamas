@@ -17,6 +17,8 @@ int screenY = 0;
 int middleScreenY = 0;
 int middleScreenX = 0;
 
+player p1;
+
 char commandBase[7] = "color ";
 WINDOW *boardWindow;
 WINDOW *timerWindow;
@@ -59,10 +61,32 @@ void clearPiece(WINDOW *window, int positionY, int positionX){
 	wrefresh(window);
 }
 
-void movePlayer(player p, WINDOW *boardWindow){
-	wmove(boardWindow, p.positionY, p.positionX);
-	waddch(boardWindow, 183);
-	wrefresh(boardWindow);
+void movePlayer(player p, WINDOW *window){
+	p.positionY = 2;
+	p.positionX = 2;
+	keypad(stdscr, TRUE);
+	int ch = wgetch(window);
+	wrefresh(window);
+		switch(ch)
+		{
+			case KEY_UP:
+				p.positionY++;
+				break;
+			
+			case KEY_DOWN:
+				p.positionY--;
+				break;
+			case KEY_LEFT:
+				p.positionX--;
+				break;
+			case KEY_RIGHT:
+				p.positionX++;
+				break;
+		}
+
+	wmove(window, p.positionY, p.positionX);
+	waddch(window, 183);
+	wrefresh(window);
 }
 
 void showTimer(WINDOW *window)
@@ -123,11 +147,7 @@ void showBoard(void)
 			}
 		}
 	}
-	player p1;
-	p1.positionX = 1;
-	p1.positionY = 4;
 	movePlayer(p1, boardWindow);
-	clearPiece(boardWindow, 5, 0);
 }
 
 void showWelcomeMessage(void)
