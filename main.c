@@ -7,8 +7,14 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include "checkers.h"
 #include <ncurses/curses.h>
+
+typedef struct player
+{
+	int positionX;
+	int positionY;
+    int score;
+}player;
 
 int timeInMinutes = 0;
 int timeInSeconds = 0;
@@ -112,55 +118,50 @@ void movePiece(player p, WINDOW *window)
 			}
 			break;
 		case 'j':
-		clearPiece(boardWindow, p.positionY, p.positionX);
-		do
-	{
-		wclear(positionWindow);
-		wprintw(positionWindow, "X: %d e Y: %d", p.positionX, p.positionY);
-		wrefresh(positionWindow);
-		ch = wgetch(window);
-		switch (ch)
-		{
-		case KEY_UP:
-			p.positionY++;
-			if (p.positionY < 0 || p.positionY > 8)
+			clearPiece(boardWindow, p.positionY, p.positionX);
+			do
 			{
-				p.positionY = 0;
-			}
-			break;
+				wclear(positionWindow);
+				wprintw(positionWindow, "X: %d e Y: %d", p.positionX, p.positionY);
+				wrefresh(positionWindow);
+				ch = wgetch(window);
+				switch (ch)
+				{
+				case KEY_UP:
+					p.positionY++;
+					if (p.positionY < 0 || p.positionY > 8)
+					{
+						p.positionY = 0;
+					}
+					break;
 
-		case KEY_DOWN:
-			p.positionY--;
-			if (p.positionY < 0 || p.positionY > 8)
-			{
-				p.positionY = 0;
-			}
-			break;
+				case KEY_DOWN:
+					p.positionY--;
+					if (p.positionY < 0 || p.positionY > 8)
+					{
+						p.positionY = 0;
+					}
+					break;
 
-		case KEY_LEFT:
-			p.positionX--;
-			if (p.positionX < 0 || p.positionX > 8)
-			{
-				p.positionX = 0;
-			}
-			break;
+				case KEY_LEFT:
+					p.positionX--;
+					if (p.positionX < 0 || p.positionX > 8)
+					{
+						p.positionX = 0;
+					}
+					break;
 
-		case KEY_RIGHT:
-			p.positionX++;
-			if (p.positionX < 0 || p.positionX > 8)
-			{
-				p.positionX = 0;
-			}
-			break;
-		// case 'j':
-		// 	wmove(window, p.positionY, p.positionX);
-		// 	waddch(window, 183);
-		// 	wrefresh(window);
-		// 	break;
-		default:
-			break;
-		}
-	} while (ch != 'j');
+				case KEY_RIGHT:
+					p.positionX++;
+					if (p.positionX < 0 || p.positionX > 8)
+					{
+						p.positionX = 0;
+					}
+					break;
+				default:
+					break;
+				}
+			} while (ch != 'j');
 			wmove(window, p.positionY, p.positionX);
 			waddch(window, 183);
 			wrefresh(window);
