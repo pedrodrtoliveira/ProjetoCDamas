@@ -57,17 +57,25 @@ Descrever com objetividade qual bug foi corrigido e em qual componente ou funcio
 
 ### Indice de funções
 
-### clrscr
+### clrscr(void)
 Limpa a tela (Disponível apenas no Windows).
-### pause
+### pause(void)
 Pausa a execução (// // // //).
-### showBoard
+### showMenu(void)
+Mostra o menu. (dãããã)
+### showHeader(void)
+Mostra o header na área superior central.
+### showBoard(void)
 Renderiza o tabuleiro.
-### showWelcomeMessage
+### showWelcomeMessage(void)
 Mostra mensagem de apresentação.
-### showTimer
+### showTimer(void)
 Renderiza o cronômetro.
-### finishGame
+### createWindow(int height, int width, int y, int x)
+Cria uma nova janela do ncurses. (dãããã)
+### startGame(void)
+Inicia um novo jogo. (dããã)
+### finishGame(void)
 Finaliza o jogo. (dããã)
 ### movePiece(player p, WINDOW *window)
 Move o jogador de acordo com as coordenadas do tabuleiro.
@@ -78,16 +86,24 @@ Atualiza o estado do tabuleiro "limpando" a peça que foi movida.
 
 ### Functions Sumary
 
-### clrscr
+### clrscr(void)
 clear the screen (Windows only).
-### pause
+### pause(void)
 pause the execution (Windows only).
-### showBoard
+### showMenu(void)
+shows the menu. (dãããã)
+### createWindow(int height, int width, int y, int x)
+creates a new ncurses window. (dããã)
+### showBoard(void)
 shows the game board.
-### showWelcomeMessage
+### showHeader(void)
+shows the game header at the top center.
+### showWelcomeMessage(void)
 shows the welcome message
-### showTimer
+### showTimer(void)
 Render the timer. 
+### startGame(void)
+Starts the game. (dããã)
 ### finishGame
 Finish the game. (dããã)
 ### movePiece(player p, WINDOW *window)
