@@ -24,7 +24,6 @@ int middleScreenX = 0;
 
 player p1;
 
-char commandBase[7] = "color ";
 WINDOW *boardWindow;
 WINDOW *timerWindow;
 WINDOW *headerWindow;

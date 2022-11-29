@@ -1,4 +1,6 @@
-![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+Vídeo:
+
+([rainbow](https://youtu.be/nrA1gAZ1egs))
 
 ### Guia de build
 ### Pré requisitos
