@@ -13,7 +13,6 @@ typedef struct player
 {
 	int positionX;
 	int positionY;
-    int score;
 }player;
 
 int timeInMinutes = 0;
@@ -34,19 +33,6 @@ WINDOW *positionWindow;
 void clrscr(void)
 {
 	system("cls");
-}
-
-void setColor(char *color)
-{
-	if ((int)color >= 48 && (int)color <= 57)
-	{
-		system(strcat(commandBase, color));
-	}
-	else
-	{
-		printf("Comando Inválido");
-		exit(EXIT_FAILURE);
-	}
 }
 
 void pause(void)
@@ -169,7 +155,7 @@ void movePiece(player p, WINDOW *window)
 		default:
 			break;
 		}
-	} while (1);
+	} while (timeInMinutes != 3);
 }
 
 void showTimer(WINDOW *window)
@@ -193,10 +179,12 @@ void showTimer(WINDOW *window)
 	clear();
 	finishGame();
 }
+
 void showHeader(WINDOW *window)
 {
 	wprintw(window, "==========================\n J O G O  D E  D A M A S \n==========================");
 }
+
 void showBoard(void)
 {
 	boardWindow = createWindow(8, 8, middleScreenY, middleScreenX);
@@ -245,14 +233,14 @@ void initGame(void)
 	timerWindow = createWindow(5, 5, screenY - 1, screenX / 2.7);
 	headerWindow = createWindow(3, 35, 0, screenX / 2.6);
 	mvwin(boardWindow, middleScreenY, middleScreenX);
-	showBoard();
-	wrefresh(boardWindow);
-	wprintw(timerWindow, "00:00");
-	wrefresh(timerWindow);
 	showHeader(headerWindow);
 	wrefresh(headerWindow);
-	showTimer(timerWindow);
-	wclear(timerWindow);
+	// wprintw(timerWindow, "00:00");
+	// wrefresh(timerWindow);
+	// showTimer(timerWindow);
+	// wclear(timerWindow);
+	showBoard();
+	wrefresh(boardWindow);
 	getch();
 	endwin();
 }
@@ -297,7 +285,7 @@ void showMenu(void)
 
 		case 3:
 		{
-			setColor("7");
+			system("color 7");
 			printf("Que pena, voce escolheu sair.");
 			exit(EXIT_SUCCESS);
 			break;
@@ -306,11 +294,11 @@ void showMenu(void)
 		default:
 		{
 			clrscr();
-			setColor("4");
+			system("color 4");
 			showWelcomeMessage();
 			printf("OPCAO INVALIDA\n\n");
 			pause();
-			setColor("7");
+			system("color 7");
 			break;
 		}
 		}
