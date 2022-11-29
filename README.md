@@ -51,7 +51,7 @@ Marcar com o comentário abaixo funções em desenvolvimento:
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ### Correção de bugs:
-Descrever com objetividade qual bug foi corrigido e em qual componente ou funcionalidade.
+Descrever com objetividade qual bug foi corrigido e em qual componente ou funcionalidade usando os commits. (Use com moderação)
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
