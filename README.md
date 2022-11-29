@@ -67,8 +67,12 @@ Renderiza o tabuleiro.
 Mostra mensagem de apresentação.
 ### showTimer
 Renderiza o cronômetro.
-### setColor(char *color)
-Muda a cor do terminal.
+### finishGame
+Finaliza o jogo. (dããã)
+### movePiece(player p, WINDOW *window)
+Move o jogador de acordo com as coordenadas do tabuleiro.
+### clearPiece(WINDOW *window, int positionY, int positionX)
+Atualiza o estado do tabuleiro "limpando" a peça que foi movida.
 
 ![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -84,7 +88,11 @@ shows the game board.
 shows the welcome message
 ### showTimer
 Render the timer. 
-### setColor(char *color)
-changes the terminal color.
+### finishGame
+Finish the game. (dããã)
+### movePiece(player p, WINDOW *window)
+Moves the player according with boards coordenates.
+### clearPiece(WINDOW *window, int positionY, int positionX)
+Updates the game state "cleaning" the piece that was moved.
 
 
