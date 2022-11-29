@@ -1,6 +1,6 @@
 Vídeo:
 
-([rainbow](https://youtu.be/nrA1gAZ1egs))
+[Projeto DAMAS - Técnicas de Desenvolvimento de Algoritmos](https://youtu.be/nrA1gAZ1egs)
 
 ### Guia de build
 ### Pré requisitos
