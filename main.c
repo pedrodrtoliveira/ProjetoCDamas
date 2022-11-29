@@ -235,12 +235,12 @@ void startGame(void)
 	mvwin(boardWindow, middleScreenY, middleScreenX);
 	showHeader(headerWindow);
 	wrefresh(headerWindow);
+	showBoard();
+	wrefresh(boardWindow);
 	wprintw(timerWindow, "00:00");
 	wrefresh(timerWindow);
 	showTimer(timerWindow);
 	wclear(timerWindow);
-	showBoard();
-	wrefresh(boardWindow);
 	getch();
 	endwin();
 }
