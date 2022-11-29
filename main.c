@@ -219,7 +219,7 @@ void showWelcomeMessage(void)
 	printf("\n\n==========================\n\nJ O G O  D E  D A M A S\n\n==========================\n\n");
 }
 
-void initGame(void)
+void startGame(void)
 {
 	setlocale(LC_ALL, ".UTF-8");
 	initscr();
@@ -235,10 +235,10 @@ void initGame(void)
 	mvwin(boardWindow, middleScreenY, middleScreenX);
 	showHeader(headerWindow);
 	wrefresh(headerWindow);
-	// wprintw(timerWindow, "00:00");
-	// wrefresh(timerWindow);
-	// showTimer(timerWindow);
-	// wclear(timerWindow);
+	wprintw(timerWindow, "00:00");
+	wrefresh(timerWindow);
+	showTimer(timerWindow);
+	wclear(timerWindow);
 	showBoard();
 	wrefresh(boardWindow);
 	getch();
@@ -261,7 +261,7 @@ void showMenu(void)
 		case 1:
 		{
 			clear();
-			initGame();
+			startGame();
 			break;
 		}
 
