@@ -2,6 +2,8 @@ Vídeo:
 
 [Projeto DAMAS - Técnicas de Desenvolvimento de Algoritmos](https://youtu.be/nrA1gAZ1egs)
 
+![rainbow](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 ### Guia de build
 ### Pré requisitos
 
